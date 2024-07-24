@@ -44,10 +44,18 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <p class="mb-2">
-                                    <strong>Stack:</strong>
-                                    {{ $project->programming_language }}
-                                </p>
+                                <strong>Technologies:</strong>
+                                @if ($project->technologies->isNotEmpty())
+                                    @foreach ($project->technologies as $technology)
+                                        <span
+                                            class="badge bg-warning text-black"
+                                        >
+                                            {{ $technology->name }}
+                                        </span>
+                                    @endforeach
+                                @else
+                                    <span>Not Available</span>
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <p class="mb-2">

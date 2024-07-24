@@ -28,16 +28,16 @@
                     <h4 class="mt-4">Details</h4>
                     <div class="row">
                         <div class="col-md-6">
-                            <p>
-                                <strong>Type:</strong>
-                                {{ $project->type?->name ?: "No type set" }}
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p>
-                                <strong>Stack:</strong>
-                                {{ $project->programming_language }}
-                            </p>
+                            <strong>Technologies:</strong>
+                            @if ($project->technologies->isNotEmpty())
+                                @foreach ($project->technologies as $technology)
+                                    <span class="badge bg-warning text-black">
+                                        {{ $technology->name }}
+                                    </span>
+                                @endforeach
+                            @else
+                                <span>Not Available</span>
+                            @endif
                         </div>
                     </div>
                 </div>

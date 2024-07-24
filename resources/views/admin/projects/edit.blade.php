@@ -94,26 +94,28 @@
                             value="{{ old("link_to_website", $project->link_to_website) }}"
                         />
                     </div>
-                    <div class="mb-3">
+                    {{--
+                        <div class="mb-3">
                         <label for="programming_language" class="form-label">
-                            Stack
+                        Stack
                         </label>
                         <select
-                            class="form-control"
-                            id="programming_language"
-                            name="programming_language"
+                        class="form-control"
+                        id="programming_language"
+                        name="programming_language"
                         >
-                            <option value="">Select Stack</option>
-                            @foreach ($programmingLanguages as $language)
-                                <option
-                                    value="{{ $language }}"
-                                    {{ old("programming_language", $project->programming_language) == $language ? "selected" : "" }}
-                                >
-                                    {{ $language }}
-                                </option>
-                            @endforeach
+                        <option value="">Select Stack</option>
+                        @foreach ($programmingLanguages as $language)
+                        <option
+                        value="{{ $language }}"
+                        {{ old("programming_language", $project->programming_language) == $language ? "selected" : "" }}
+                        >
+                        {{ $language }}
+                        </option>
+                        @endforeach
                         </select>
-                    </div>
+                        </div>
+                    --}}
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
                         <select class="form-control" id="status" name="status">
