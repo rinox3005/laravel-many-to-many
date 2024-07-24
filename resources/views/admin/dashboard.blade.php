@@ -45,6 +45,12 @@
                         >
                             Types
                         </a>
+                        <a
+                            href="{{ route("admin.technologies.index") }}"
+                            class="list-group-item list-group-item-action text-dark"
+                        >
+                            Technologies
+                        </a>
                     </div>
 
                     <a

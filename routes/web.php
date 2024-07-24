@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\PageController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,11 @@ Route::middleware(['auth', 'verified'])
 
         // admin dashboard
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        //technologies
+        Route::resource('projects/technologies', TechnologyController::class)->parameters([
+            'technologies' => 'technology:slug',
+        ]);
 
         //types
         Route::resource('projects/types', TypeController::class)->parameters([
