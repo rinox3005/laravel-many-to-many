@@ -27,3 +27,11 @@ Creare il seeder per il model Technology.
 # Bonus 2
 
 Aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tecnologie utilizzate nei progetti direttamente dal pannello di amministrazione.
+
+# Bonus 3
+
+-   Permettere all’utente di associare le tecnologie nella pagina di creazione e modifica di un progetto.
+
+-   Gestire il salvataggio dell’associazione progetto-tecnologie con opportune regole di validazione.
+
+-   Eliminare opportunamente le relazioni alla cancellazione del progetto/technology.
