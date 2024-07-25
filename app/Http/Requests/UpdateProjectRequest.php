@@ -28,7 +28,7 @@ class UpdateProjectRequest extends FormRequest
             'type_id' => 'nullable|exists:types,id',
             'key_features' => 'nullable|string',
             'link_to_website' => 'nullable|url',
-            // 'programming_language' => 'required|string|max:100',
+            'technologies' => 'nullable|exists:technologies,id',
             'status' => 'required|string|max:20',
             'preview' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:3000',
         ];
@@ -40,7 +40,6 @@ class UpdateProjectRequest extends FormRequest
             'title.min' => 'The title must be at least 5 characters.',
             'title.max' => 'The title may not be greater than 255 characters.',
             'title.unique' => 'The title has already been taken.',
-            // 'programming_language.required' => 'The programming language is required.',
             'status.required' => 'The status is required.',
             'status.max' => 'The status may not be greater than 20 characters.',
             'preview.image' => 'The preview must be an image.',

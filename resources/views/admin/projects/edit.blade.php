@@ -94,28 +94,42 @@
                             value="{{ old("link_to_website", $project->link_to_website) }}"
                         />
                     </div>
-                    {{--
-                        <div class="mb-3">
-                        <label for="programming_language" class="form-label">
-                        Stack
-                        </label>
-                        <select
-                        class="form-control"
-                        id="programming_language"
-                        name="programming_language"
-                        >
-                        <option value="">Select Stack</option>
-                        @foreach ($programmingLanguages as $language)
-                        <option
-                        value="{{ $language }}"
-                        {{ old("programming_language", $project->programming_language) == $language ? "selected" : "" }}
-                        >
-                        {{ $language }}
-                        </option>
+                    <div class="mb-3">
+                        <div class="mb-2">Technologies</div>
+                        @foreach ($technologies as $technology)
+                            @if ($errors->any())
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="technology-{{ $technology->id }}"
+                                    name="technologies[]"
+                                    value="{{ $technology->id }}"
+                                    {{ in_array($technology->id, old("technologies", $project->technologies)) ? "checked" : "" }}
+                                />
+                                <label
+                                    class="btn btn-outline-primary mb-1"
+                                    for="technology-{{ $technology->id }}"
+                                >
+                                    {{ $technology->name }}
+                                </label>
+                            @else
+                                <input
+                                    type="checkbox"
+                                    class="btn-check"
+                                    id="technology-{{ $technology->id }}"
+                                    name="technologies[]"
+                                    value="{{ $technology->id }}"
+                                    {{ $project->technologies->contains($technology) ? "checked" : "" }}
+                                />
+                                <label
+                                    class="btn btn-outline-primary mb-1"
+                                    for="technology-{{ $technology->id }}"
+                                >
+                                    {{ $technology->name }}
+                                </label>
+                            @endif
                         @endforeach
-                        </select>
-                        </div>
-                    --}}
+                    </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
                         <select class="form-control" id="status" name="status">

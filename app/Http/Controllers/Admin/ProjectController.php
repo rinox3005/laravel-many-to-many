@@ -78,10 +78,10 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types =  Type::all();
-        $programmingLanguages = ['PHP', 'JavaScript', 'Vite', 'Vue', 'HTML', 'CSS', 'Laravel'];
+        $technologies = Technology::all();
         $statuses = ['Completed', 'In Progress'];
 
-        return view('admin.projects.edit', compact('project', 'programmingLanguages', 'statuses', 'types'));
+        return view('admin.projects.edit', compact('project', 'technologies', 'statuses', 'types'));
     }
 
     /**
@@ -110,6 +110,12 @@ class ProjectController extends Controller
         }
 
         $project->update($data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($request->technologies);
+        } else {
+            $project->technologies()->detach();
+        }
 
         return redirect()->route('admin.projects.show', $project)->with('message', $project->title . ' successfully updated');
     }

@@ -93,29 +93,6 @@
                             value="{{ old("link_to_website") }}"
                         />
                     </div>
-                    {{--
-                        <div class="mb-3">
-                        <label for="programming_language" class="form-label">
-                        Stack
-                        </label>
-                        <select
-                        class="form-control"
-                        id="programming_language"
-                        name="programming_language"
-                        >
-                        <option value="">Select Stack</option>
-                        @foreach ($programmingLanguages as $language)
-                        <option
-                        value="{{ $language }}"
-                        {{ old("programming_language") == $language ? "selected" : "" }}
-                        >
-                        {{ $language }}
-                        </option>
-                        @endforeach
-                        </select>
-                        </div>
-                    --}}
-
                     <div class="mb-3">
                         <div class="mb-2">Technologies</div>
                         @foreach ($technologies as $technology)
@@ -125,7 +102,7 @@
                                 id="technology-{{ $technology->id }}"
                                 name="technologies[]"
                                 value="{{ $technology->id }}"
-                                {{-- @if (is_array(old('technologies')) && in_array($technology->id, old('technologies'))) checked @endif --}}
+                                {{ in_array($technology->id, old("technologies", $project->technologies)) ? "checked" : "" }}
                             />
                             <label
                                 class="btn btn-outline-primary mb-1"
@@ -135,7 +112,6 @@
                             </label>
                         @endforeach
                     </div>
-
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
                         <select class="form-control" id="status" name="status">
