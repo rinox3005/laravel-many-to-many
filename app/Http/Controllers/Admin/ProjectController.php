@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Technology;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,10 +28,10 @@ class ProjectController extends Controller
     public function create()
     {
         $types =  Type::all();
-        $programmingLanguages = ['PHP', 'JavaScript', 'Vite', 'Vue', 'HTML', 'CSS', 'Laravel'];
+        $technologies = Technology::all();
         $statuses = ['Completed', 'In Progress'];
 
-        return view('admin.projects.create', compact('programmingLanguages', 'statuses', 'types'));
+        return view('admin.projects.create', compact('technologies', 'statuses', 'types'));
     }
 
     /**
@@ -39,6 +40,7 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $data = $request->validated();
+
         $data['slug'] = Str::of($data['title'])->slug();
 
         // Handle file upload
@@ -51,7 +53,13 @@ class ProjectController extends Controller
             $data['preview_path'] = null;
         }
 
+
+
         $project = Project::create($data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->attach($request->technologies);
+        }
 
         return redirect()->route('admin.projects.index')->with('message', 'Project ' . $project->title . ' successfully created');
     }

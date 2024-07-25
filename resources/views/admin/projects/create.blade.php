@@ -115,6 +115,27 @@
                         </select>
                         </div>
                     --}}
+
+                    <div class="mb-3">
+                        <div class="mb-2">Technologies</div>
+                        @foreach ($technologies as $technology)
+                            <input
+                                type="checkbox"
+                                class="btn-check"
+                                id="technology-{{ $technology->id }}"
+                                name="technologies[]"
+                                value="{{ $technology->id }}"
+                                {{-- @if (is_array(old('technologies')) && in_array($technology->id, old('technologies'))) checked @endif --}}
+                            />
+                            <label
+                                class="btn btn-outline-primary mb-1"
+                                for="technology-{{ $technology->id }}"
+                            >
+                                {{ $technology->name }}
+                            </label>
+                        @endforeach
+                    </div>
+
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
                         <select class="form-control" id="status" name="status">
