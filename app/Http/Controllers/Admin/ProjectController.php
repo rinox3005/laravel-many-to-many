@@ -125,6 +125,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        // per sicurezza elimino a "mano" le relazioni tra project e technologies nella tabella pivot
+        $project->technologies()->detach();
+
         // Check if the project has a linked image and delete it
         if ($project->preview_path) {
             $filePath = str_replace('storage/', '', $project->preview_path);
